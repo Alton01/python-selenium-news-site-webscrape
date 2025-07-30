@@ -24,7 +24,7 @@ for container in containers:
     links.append(link)
 
 
-my_dict = {'title' : titles, 'subtitle' : subtitles, 'link' : links }
+my_dict = {'title': titles, 'subtitle': subtitles, 'link': links }
 
 df_headlines = pd.Dataframe(my_dict)
 
