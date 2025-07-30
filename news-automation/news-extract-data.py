@@ -11,7 +11,7 @@ driver.get("https://www.thesun.co.uk/sport/football/")
 
 
 # for getting multiple elements with same xpath class
-containers = driver.find_elements(By.XPATH, value='//div[@class="teaser__copy-container"]')
+containers = driver.find_elements(by="xpath", value='//div[@class="teaser__copy-container"]')
 
 
 titles = []
@@ -20,9 +20,9 @@ links = []
 
 # itterating to get title, subtitle and link individually
 for container in containers:
-    title = container.find_element(By.XPATH, value='//div[@class="teaser__copy-container"]/a/span').text
-    subtitle = container.find_element(By.XPATH, value='//div[@class="teaser__copy-container"]/a/h3').text
-    link = container.find_element(By.XPATH, value='//div[@class="teaser__copy-container"]/a').get_attribute("href")
+    title = container.find_element(by="xpath", value='//div[@class="teaser__copy-container"]/a/span').text
+    subtitle = container.find_element(by="xpath", value='//div[@class="teaser__copy-container"]/a/h3').text
+    link = container.find_element(by="xpath", value='//div[@class="teaser__copy-container"]/a').get_attribute("href")
     titles.append(title)
     subtitles.append(subtitle)
     links.append(link)
