@@ -1,14 +1,14 @@
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service 
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import ElementNotVisibleException
+from selenium.webdriver.chrome.options import Options
 import pandas as pd
 
-driver = webdriver.Chrome()
-driver.get("https://www.thesun.co.uk/sport/football/")
+#Headless Mode
+options = Options()
+options.add_argument("--headless=new")
+#options.headless = True
 
+driver = webdriver.Chrome(options=options)
+driver.get("https://www.thesun.co.uk/sport/football/")
 
 # for getting multiple elements with same xpath class
 containers = driver.find_elements(by="xpath", value='//div[@class="teaser__copy-container"]')
@@ -33,6 +33,6 @@ my_dict = {'title': titles, 'subtitle': subtitles, 'link': links }
 df_headlines = pd.DataFrame(my_dict)
 
 # export dataframe in csv format
-df_headlines.to_csv('headline.csv')
+df_headlines.to_csv('headline-headless.csv')
 
 driver.quit()
