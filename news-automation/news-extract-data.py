@@ -1,6 +1,19 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import pandas as pd
+from datetime import datetime
+import os
+import sys
+
+# code for converting py file to executable from the terminal - pyinstaller --onefile news-extract-data.py
+
+# pyinstaller converts .py files to executables(exe)
+# get and set the path of executable to be created
+application_path = os.path.dirname(sys.executable)
+
+now = datetime.now()
+
+month_day_year = now.strftime("%m%d%Y")
 
 #Headless Mode
 options = Options()
@@ -32,7 +45,11 @@ my_dict = {'title': titles, 'subtitle': subtitles, 'link': links }
 
 df_headlines = pd.DataFrame(my_dict)
 
+#File name creation
+file_name = f'headline-{month_day_year}.csv'
+final_path = os.path.join(application_path, file_name)
+
 # export dataframe in csv format
-df_headlines.to_csv('headline-headless.csv')
+df_headlines.to_csv(final_path)
 
 driver.quit()
